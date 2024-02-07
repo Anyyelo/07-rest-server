@@ -75,6 +75,7 @@ const usuariosPath=(req, res) => {
 
 const usuariosDelete=async (req, res) => {
     const {id}=req.params;
+    
 
     //Eliminar fisicamente de la base de datos
     //const usuario= await Usuario.findByIdAndDelete(id);
@@ -82,9 +83,11 @@ const usuariosDelete=async (req, res) => {
     //Actualizar estado en la base de datos
 
     const usuario= await Usuario.findByIdAndUpdate(id,{estado:false})
+    const usuarioAutenticado=req.usuario;
 
     res.json({
-        usuario
+        usuario,
+        usuarioAutenticado
     });
 }
 

@@ -1,5 +1,6 @@
 const Role=require('../models/role.js');
-const Usuario=require('../models/usuario.js');
+const {Usuario,Categoria,Producto}=require('../models');
+
 
 
 const esRolValido=async (rol='')=>{
@@ -23,8 +24,24 @@ const ExisteUsuarioPorId=async(id='')=>{
     }
 }
 
+const ExisteCategoriaPorId=async(id='')=>{
+    const ExisteCategoria=await Categoria.findById(id);
+    if(!ExisteCategoria){
+        throw new Error(`El id:${id} no existe en la base de datos`);
+    }
+}
+
+const ExisteProductoPorId=async(id='')=>{
+    const ExisteProducto=await Producto.findById(id);
+    if(!ExisteProducto){
+        throw new Error(`El id:${id} no existe en la base de datos`);
+    }
+}
+
 module.exports={
     esRolValido,
     ExisteEmail,
-    ExisteUsuarioPorId
+    ExisteUsuarioPorId,
+    ExisteCategoriaPorId,
+    ExisteProductoPorId
 }
